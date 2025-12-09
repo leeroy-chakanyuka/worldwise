@@ -1,17 +1,20 @@
 import styles from "./CityList.module.css";
-
+import Message from "./Message";
 import Spinner from "./Spinner";
 import CityItem from "./CityItem";
-
-
 
 function CityList({ cities, isLoading }) {
   if (isLoading) {
     return <Spinner />;
   }
+
+  if (!cities || !cities.length) {
+    return <Message message="No cities to display" />;
+  }
+
   return (
     <ul className={styles.cityList}>
-      {cities.cities.map((city) => (
+      {cities.map((city) => (
         <CityItem city={city} key={city.id} />
       ))}
     </ul>
@@ -19,4 +22,3 @@ function CityList({ cities, isLoading }) {
 }
 
 export default CityList;
-
